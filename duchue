@@ -1,0 +1,40 @@
+;----------------------------------------------------------------------
+; Use all flasks, now.  A variable delay is included between flasks
+; NOTE: this will use all flasks, even those with a FlaskDurationInit of 0
+;----------------------------------------------------------------------
+`::
+	if UseFlasks {
+		Send 1
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 2
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 3
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 4
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 5
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send e
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send r
+	}
+	return
+
+CycleAllFlasksWhenReady:
+	for flask, duration in FlaskDuration {
+		; skip flasks with 0 duration and skip flasks that are still active
+		if ((duration > 0) & (duration < A_TickCount - FlaskLastUsed[flask])) {
+			Send %flask%
+			FlaskLastUsed[flask] := A_TickCount
+			Random, VariableDelay, -99, 99
+			FlaskDuration[flask] := FlaskDurationInit[flask] + VariableDelay ; randomize duration to simulate human
+			sleep, %VariableDelay%
+		}
+	}
+	return
