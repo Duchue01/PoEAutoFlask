@@ -6,7 +6,7 @@
 ; right mouse button - primary attack skills
 ; 1-5 - number keys to manually use a specific flask
 ; ` (backtick) - use all flasks, now
-; "e" and "r" for casting buffs
+; "" and "r" for casting buffs
 ; Note - the inventory buttons assume a starting location based on screen
 ; resolution - you'll need to update some locations, see below.
 ; Alt+c to Ctrl-Click every location in the (I)nventory screen.
@@ -136,14 +136,14 @@ Loop {
 ; Make the change in both places, below (the first is click,
 ; 2nd is release of button}
 ;----------------------------------------------------------------------
-~RButton::
+~::
 	; pass-thru and capture when the last attack (Right click) was done
 	; we also track if the mouse button is being held down for continuous attack(s) and/or channelling skills
 	HoldRightClick := true
 	LastRightClick := A_TickCount
 	return
 
-~RButton up::
+~::
 	; pass-thru and release the right mouse button
 	HoldRightClick := false
 	return
@@ -159,7 +159,7 @@ Loop {
 	FlaskDuration[1] := FlaskDurationInit[1] + VariableDelay ; randomize duration to simulate human
 	return
 
-~2::
+~::
 	; pass-thru and start timer for flask 2
 	FlaskLastUsed[2] := A_TickCount
 	Random, VariableDelay, -99, 99
