@@ -1,0 +1,43 @@
+;----------------------------------------------------------------------
+; PoE Flasks macro for AutoHotKey
+;
+; Keys used and monitored:
+; alt+f12 - activate automatic flask usage
+; right mouse button - primary attack skills
+; 1-5 - number keys to manually use a specific flask
+; ` (backtick) - use all flasks, now
+; "e" and "r" for casting buffs
+; Note - the inventory buttons assume a starting location based on screen
+; resolution - you'll need to update some locations, see below.
+; Alt+c to Ctrl-Click every location in the (I)nventory screen.
+; Alt+m - Allow setting stash tab size as normal (12x12) or large (24x24)
+; Alt+g - Get the current screen coordinates of the mouse pointer.
+; Alt+s - Swap a skill gem with an alternate.
+;----------------------------------------------------------------------
+#IfWinActive Path of Exile
+#SingleInstance force
+#NoEnv  
+#Warn  
+#Persistent 
+
+;----------------------------------------------------------------------
+; Use all flasks, now.  A variable delay is included between flasks
+; NOTE: this will use all flasks, even those with a FlaskDurationInit of 0
+;----------------------------------------------------------------------
+2::
+	if UseFlasks {
+		Send 2
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 3
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 4
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send 5
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
+		Send w
+	}
+	return
