@@ -212,6 +212,9 @@ Loop {
 		Send w
 		Random, VariableDelay, -99, 99
 		Sleep, %VariableDelay%
+		Send 6
+		Random, VariableDelay, -99, 99
+		Sleep, %VariableDelay%
 		
 	}
 	return
